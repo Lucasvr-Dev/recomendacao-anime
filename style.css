@@ -1,0 +1,162 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #3316a5, rgb(66, 58, 85), #29176b);
+  background-size: 400% 400%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+#btn {
+  display: block;
+  margin: 15px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #980303;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#btn:hover {
+  background: linear-gradient(135deg, #cc0000, #000000d2);
+}
+
+.container {
+  width: 80%;             
+  max-width: 600px;       
+  margin: 20px auto;
+  padding: 30px;
+  background: rgb(255, 255, 255);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+
+.anime-card {
+  display: none;          
+  width: 100%;            
+  padding: 20px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.anime-card.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anime-card h3 {
+  font-size: 22px;
+  color: #3316a5;
+  margin-bottom: 12px;
+}
+
+.anime-card p {
+  font-size: 14px;
+  margin: 5px 0;
+  line-height: 1.4;
+  color: #333;
+}
+
+.anime-card img {
+  max-width: 100%;
+  width: 220px;
+  border-radius: 10px;
+  margin: 12px auto;
+  transition: transform 0.3s ease;
+}
+
+.anime-card img:hover {
+  transform: scale(1.05);
+}
+
+#btn {
+  display: block;
+  margin: 15px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #980303;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#btn:hover {
+  background: linear-gradient(135deg, #cc0000, #000000d2);
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .anime-card {
+    padding: 18px;
+  }
+
+  .anime-card h3 {
+    font-size: 20px;
+  }
+
+  .anime-card img {
+    width: 180px;
+  }
+
+  .anime-card p {
+    font-size: 13px;
+  }
+
+  #btn {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .anime-card {
+    padding: 12px;
+  }
+
+  .anime-card h3 {
+    font-size: 18px;
+  }
+
+  .anime-card img {
+    width: 140px;
+  }
+
+  .anime-card p {
+    font-size: 12px;
+  }
+
+  #btn {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+}

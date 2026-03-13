@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indicador de animes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="/templates/15938973-dados-de-desenho-animado-para-fantasia-dnd-e-jogo-de-tabuleiro-rpg-esboco-de-desenho-animado-vetor.jpg"
+        width="100px"
+      />
+      <h2>QUAL ANIME VOU ASSISTIR HOJE?</h2>
+      <br />
+
+      <hr />
+      <br />
+      <p><strong>Sorteie um anime</strong></p>
+
+      <button id="btn" onclick="getRandomAnime()">Sortear</button>
+      <br />
+      <div class="anime-card" id="animeCard">
+        <h3 id="animeTitle"></h3>
+        <p><strong>Episódios:</strong> <span id="animeEpisodes"></span></p>
+        <p><strong>Duração:</strong> <span id="animeDuration"></span></p>
+        <p><strong>Nota:</strong> <span id="animeScore"></span></p>
+        <p><strong>Gêneros:</strong> <span id="animeGenres"></span></p>
+        <p><strong>Status:</strong> <span id="animeStatus"></span></p>
+        <img id="animeImage" src="" alt="Anime" />
+        <p><strong>Sinopse:</strong> <span id="animeSynopsis"></span></p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
