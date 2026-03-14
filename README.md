@@ -128,7 +128,7 @@ Distribuído sob a licença **MIT**. Veja [`LICENSE`](LICENSE) para mais detalhe
 
 <div align="center">
 
-**Feito com ❤️ e muito ☕ por um(a) amante de animes**
+**Feito por Lucas Vinicius**
 
 ⭐ **Gostou? Deixa uma estrela no repositório!** ⭐
 
