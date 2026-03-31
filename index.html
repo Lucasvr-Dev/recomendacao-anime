@@ -6,6 +6,8 @@
 
   <title>🎌 Anime Random</title>
 
+  <meta name="description" content="Descubra um anime aleatório para assistir hoje usando a API do MyAnimeList.">
+
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#3316a5"/>
 
@@ -17,8 +19,6 @@
 <div class="container">
 
   <h2>🎌 QUAL ANIME VOU ASSISTIR HOJE?</h2>
-
-  <button id="btn">🎲 Sortear Anime</button>
 
   <p id="loading">Carregando anime...</p>
 
@@ -33,12 +33,14 @@
     <p><strong>Gêneros:</strong> <span id="animeGenres"></span></p>
     <p><strong>Status:</strong> <span id="animeStatus"></span></p>
 
-    <img id="animeImage" alt="Anime" />
+    <img id="animeImage" alt="Anime" loading="lazy"/>
 
     <p><strong>Sinopse:</strong> <span id="animeSynopsis"></span></p>
   </div>
 
 </div>
+
+<button id="btn">🎲 Sortear Anime</button>
 
 <script src="script.js" defer></script>
 

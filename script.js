@@ -3,6 +3,28 @@ const animeCard = document.getElementById("animeCard");
 const loading = document.getElementById("loading");
 const hardwareInfo = document.getElementById("hardwareInfo");
 
+function falarAnime(titulo, episodios) {
+  if ("speechSynthesis" in window) {
+
+    window.speechSynthesis.cancel();
+
+    const mensagem = new SpeechSynthesisUtterance(
+      `O anime sorteado foi ${titulo}. Ele possui ${episodios || "número desconhecido"} episódios.`
+    );
+
+    mensagem.lang = "pt-BR";
+    mensagem.rate = 1;
+    mensagem.pitch = 1;
+
+    window.speechSynthesis.speak(mensagem);
+
+    hardwareInfo.innerText += " Voz ativada\n";
+
+  } else {
+    hardwareInfo.innerText += " Voz não suportada\n";
+  }
+}
+
 btn.addEventListener("click", async () => {
 
   loading.style.display = "block";
@@ -11,64 +33,58 @@ btn.addEventListener("click", async () => {
 
   try {
     const response = await fetch("https://api.jikan.moe/v4/random/anime");
+
+    if (!response.ok) {
+      throw new Error("Erro na API");
+    }
+
     const { data } = await response.json();
 
     const titulo = data.title_english || data.title;
     const generos = data.genres.map(g => g.name).join(", ");
 
     document.getElementById("animeTitle").innerText = titulo;
-    document.getElementById("animeEpisodes").innerText = data.episodes;
-    document.getElementById("animeDuration").innerText = data.duration;
-    document.getElementById("animeScore").innerText = data.score;
-    document.getElementById("animeGenres").innerText = generos;
-    document.getElementById("animeStatus").innerText = data.status;
-    document.getElementById("animeImage").src = data.images.jpg.image_url;
-    document.getElementById("animeSynopsis").innerText = data.synopsis;
+    document.getElementById("animeEpisodes").innerText = data.episodes || "Desconhecido";
+    document.getElementById("animeDuration").innerText = data.duration || "Desconhecido";
+    document.getElementById("animeScore").innerText = data.score || "N/A";
+    document.getElementById("animeGenres").innerText = generos || "Não informado";
+    document.getElementById("animeStatus").innerText = data.status || "Desconhecido";
+    document.getElementById("animeImage").src = data.images.webp.image_url;
+    document.getElementById("animeSynopsis").innerText = data.synopsis || "Sem sinopse disponível.";
 
-    // 📳 Vibração
+    falarAnime(titulo, data.episodes);
+
     if ("vibrate" in navigator) {
-      const vib = navigator.vibrate([200, 100, 200]);
-      hardwareInfo.innerText += vib
-        ? "📳 Vibração ativada\n"
-        : "⚠️ Vibração bloqueada\n";
-    } else {
-      hardwareInfo.innerText += "❌ Vibração não suportada\n";
+      navigator.vibrate([200, 100, 200]);
+      hardwareInfo.innerText += " Vibração ativada\n";
     }
 
-    // 📍 Geolocalização
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          hardwareInfo.innerText += `📍 Local: ${pos.coords.latitude.toFixed(2)}, ${pos.coords.longitude.toFixed(2)}\n`;
-        },
-        () => {
-          hardwareInfo.innerText += "❌ Localização negada\n";
-        }
-      );
+
+    if ("hardwareConcurrency" in navigator) {
+      hardwareInfo.innerText += 
+        ` Núcleos CPU: ${navigator.hardwareConcurrency}\n`;
     }
 
-    // 🔋 Battery API
-    if ("getBattery" in navigator) {
-      navigator.getBattery().then(battery => {
-        const nivel = Math.round(battery.level * 100);
-        const carregando = battery.charging ? "⚡ Carregando" : "🔋 Não carregando";
 
-        hardwareInfo.innerText += `🔋 Bateria: ${nivel}% (${carregando})`;
-      });
-    } else {
-      hardwareInfo.innerText += "❌ Battery API não suportada";
+    if ("deviceMemory" in navigator) {
+      hardwareInfo.innerText += 
+        `Memória estimada: ${navigator.deviceMemory}GB\n`;
     }
 
     animeCard.classList.add("show");
 
-  } catch {
-    alert("Erro ao buscar anime 😢");
+  } catch (error) {
+    alert("Erro ao buscar anime");
+    console.error(error);
   }
 
   loading.style.display = "none";
 });
 
-// PWA
+
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js")
+      .catch(err => console.log("Erro ao registrar SW:", err));
+  });
 }
