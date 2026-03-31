@@ -1,11 +1,13 @@
 const btn = document.getElementById("btn");
 const animeCard = document.getElementById("animeCard");
 const loading = document.getElementById("loading");
+const hardwareInfo = document.getElementById("hardwareInfo");
 
 btn.addEventListener("click", async () => {
 
   loading.style.display = "block";
   animeCard.classList.remove("show");
+  hardwareInfo.innerText = "";
 
   try {
     const response = await fetch("https://api.jikan.moe/v4/random/anime");
@@ -23,30 +25,50 @@ btn.addEventListener("click", async () => {
     document.getElementById("animeImage").src = data.images.jpg.image_url;
     document.getElementById("animeSynopsis").innerText = data.synopsis;
 
-    // Vibração (hardware)
+    // 📳 Vibração
     if ("vibrate" in navigator) {
-      navigator.vibrate([100, 50, 100]);
+      const vib = navigator.vibrate([200, 100, 200]);
+      hardwareInfo.innerText += vib
+        ? "📳 Vibração ativada\n"
+        : "⚠️ Vibração bloqueada\n";
+    } else {
+      hardwareInfo.innerText += "❌ Vibração não suportada\n";
     }
 
-    // Geolocalização (hardware)
+    // 📍 Geolocalização
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        () => console.log("Localização obtida"),
-        () => console.log("Permissão negada")
+        (pos) => {
+          hardwareInfo.innerText += `📍 Local: ${pos.coords.latitude.toFixed(2)}, ${pos.coords.longitude.toFixed(2)}\n`;
+        },
+        () => {
+          hardwareInfo.innerText += "❌ Localização negada\n";
+        }
       );
+    }
+
+    // 🔋 Battery API
+    if ("getBattery" in navigator) {
+      navigator.getBattery().then(battery => {
+        const nivel = Math.round(battery.level * 100);
+        const carregando = battery.charging ? "⚡ Carregando" : "🔋 Não carregando";
+
+        hardwareInfo.innerText += `🔋 Bateria: ${nivel}% (${carregando})`;
+      });
+    } else {
+      hardwareInfo.innerText += "❌ Battery API não suportada";
     }
 
     animeCard.classList.add("show");
 
-  } catch (error) {
-    alert("Erro ao buscar anime");
+  } catch {
+    alert("Erro ao buscar anime 😢");
   }
 
   loading.style.display = "none";
 });
 
-// Service Worker
+// PWA
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("PWA ativo"));
+  navigator.serviceWorker.register("service-worker.js");
 }

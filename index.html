@@ -4,13 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>🎌 Qual Anime Vou Assistir Hoje?</title>
+  <title>🎌 Anime Random</title>
 
-  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#3316a5"/>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -18,19 +16,15 @@
 
 <div class="container">
 
-  <img
-    src="https://media.istockphoto.com/id/1186883061/pt/vetorial/japanese-word-anime.jpg?s=170667a&w=0&k=20&c=x83azmwyyXfYwzyzqGq94Tt8WLEsIRgw6unE_UccB0I="
-    width="120"
-  />
+  <h2>🎌 QUAL ANIME VOU ASSISTIR HOJE?</h2>
 
-  <h2>QUAL ANIME VOU ASSISTIR HOJE?</h2>
-
-  <button id="btn">Sortear Anime</button>
+  <button id="btn">🎲 Sortear Anime</button>
 
   <p id="loading">Carregando anime...</p>
 
-  <div class="anime-card" id="animeCard">
+  <div id="hardwareInfo"></div>
 
+  <div class="anime-card" id="animeCard">
     <h3 id="animeTitle"></h3>
 
     <p><strong>Episódios:</strong> <span id="animeEpisodes"></span></p>
@@ -42,7 +36,6 @@
     <img id="animeImage" alt="Anime" />
 
     <p><strong>Sinopse:</strong> <span id="animeSynopsis"></span></p>
-
   </div>
 
 </div>
