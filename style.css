@@ -10,37 +10,52 @@ body {
   background: linear-gradient(-45deg, #3316a5, #423a55, #29176b);
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
-.container {
+.app-box {
   width: 100%;
-  max-width: 600px;
-  padding-bottom: 150px;
+  max-width: 500px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.4s ease;
 }
 
-h2 {
-  text-align: center;
+.main-title {
   margin-bottom: 20px;
-  color: white;
 }
 
-#loading {
-  display: none;
-  text-align: center;
+#btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  background-color: #980303;
   color: white;
-  margin-bottom: 10px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.result-box {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.result-box.active {
+  max-height: 2000px;
+  margin-top: 10px;
 }
 
 .anime-card {
-  display: none;
+  background: #f0f0f5;
   padding: 20px;
-  border-radius: 12px;
-  background: white;
-}
-
-.anime-card.show {
-  display: block;
+  border-radius: 15px;
+  text-align: left;
 }
 
 .anime-card img {
@@ -51,34 +66,8 @@ h2 {
   border-radius: 10px;
 }
 
-#btn {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 400px;
-  padding: 16px;
-  font-size: 18px;
-  background-color: #980303;
-  color: #fff;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-}
-
-#soundBtn {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 400px;
-  padding: 14px;
-  font-size: 16px;
-  background-color: #3316a5;
-  color: white;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
+#loading {
+  display: none;
+  text-align: center;
+  margin-bottom: 10px;
 }

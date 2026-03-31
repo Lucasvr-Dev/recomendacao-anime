@@ -3,44 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>🎌 Anime Random</title>
-
-  <meta name="description" content="Descubra um anime aleatório para assistir hoje usando a API do MyAnimeList.">
-  <link rel="icon" href="favicon.ico">
+  <title>Anime Random</title>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#3316a5"/>
-
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<div class="container">
+<div class="app-box" id="appBox">
 
-  <h2>🎌 QUAL ANIME VOU ASSISTIR HOJE?</h2>
+  <h2 class="main-title">🎌 QUAL ANIME VOU ASSISTIR HOJE?</h2>
 
-  <p id="loading">Carregando anime...</p>
+  <button id="btn">Sortear Anime</button>
 
-  <div class="anime-card" id="animeCard">
-    <h3 id="animeTitle"></h3>
+  <div class="result-box" id="resultBox">
 
-    <p><strong>Episódios:</strong> <span id="animeEpisodes"></span></p>
-    <p><strong>Duração:</strong> <span id="animeDuration"></span></p>
-    <p><strong>Nota:</strong> <span id="animeScore"></span></p>
-    <p><strong>Gêneros:</strong> <span id="animeGenres"></span></p>
-    <p><strong>Status:</strong> <span id="animeStatus"></span></p>
+    <p id="loading">Carregando...</p>
 
-    <img id="animeImage" alt="Anime" loading="lazy"/>
+    <div class="anime-card" id="animeCard">
+      <h3 id="animeTitle"></h3>
 
-    <p><strong>Sinopse:</strong> <span id="animeSynopsis"></span></p>
+      <p><strong>Episódios:</strong> <span id="animeEpisodes"></span></p>
+      <p><strong>Duração:</strong> <span id="animeDuration"></span></p>
+      <p><strong>Nota:</strong> <span id="animeScore"></span></p>
+      <p><strong>Gêneros:</strong> <span id="animeGenres"></span></p>
+      <p><strong>Status:</strong> <span id="animeStatus"></span></p>
+
+      <img id="animeImage" alt="Anime" />
+
+      <p><strong>Sinopse:</strong> <span id="animeSynopsis"></span></p>
+    </div>
+
   </div>
 
 </div>
 
-<button id="btn">Sortear Anime</button>
-
-<script src="script.js" defer></script>
+<script src="script.js"></script>
 
 </body>
 </html>
